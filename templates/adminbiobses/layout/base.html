@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "adminbiobses/layout/head.html" %}
+</head>
+
+<body>
+    <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        {% include "adminbiobses/layout/nav.html" %}
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+            {% include "adminbiobses/layout/sidebar.html" %}
+        </header><!-- /header -->
+        <!-- Header-->
+        
+        {% block content %}
+        {% endblock %}
+
+    </div><!-- /#right-panel -->
+
+    {% include "adminbiobses/layout/js.html" %}
+
+    {% block inline_js %}
+    {% endblock %}
+</body>
+
+</html>
