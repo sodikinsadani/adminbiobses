@@ -2,7 +2,8 @@
 <html>
 <head>
   {% include "adminbiobses/layout/head.html" %}
-  <title>Index</title>
+  <link rel="stylesheet" href="/static/admstatic/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <title>Penerbit</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -22,8 +23,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Index
-        <small>it all starts here</small>
+        Penerbit
+        <small>informasi data penerbit</small>
       </h1>
     </section>
 
@@ -33,8 +34,8 @@
 
       <!-- Default box -->
       <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
+        <div class="box-header">
+          <h3 class="box-title"></h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -45,11 +46,28 @@
           </div>
         </div>
         <div class="box-body">
-          Start creating your amazing application!
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>No</th>
+              <th>ID Penerbit</th>
+              <th>Nama Penerbit</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in penerbit %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{p.id_penerbit}}</td>
+              <td>{{p.nama_penerbit|title}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          Footer
+
         </div>
         <!-- /.box-footer-->
       </div>
@@ -69,5 +87,14 @@
 
 <!-- jQuery 3 -->
 {% include "adminbiobses/layout/js.html" %}
+<!-- DataTables -->
+<script src="/static/admstatic/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/admstatic/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+  })
+</script>
 </body>
 </html>
