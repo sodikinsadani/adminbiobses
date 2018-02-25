@@ -2,7 +2,9 @@
 <html>
 <head>
   {% include "adminbiobses/layout/head.html" %}
+  <!-- datatables -->
   <link rel="stylesheet" href="/static/admstatic/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="/static/admstatic/bower_components/datatables.net-bs/css/select.bootstrap4.min.css">
   <title>Penerbit</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -38,14 +40,42 @@
           <h3 class="box-title"></h3>
 
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">Action</button>
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu" id="actionmenu">
+                <li><a href="#">New</a></li>
+                <li><a href="#">Edit</a></li>
+                <li><a href="#">Delete</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="box-body">
+          <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Default Modal</h4>
+                </div>
+                <div class="modal-body">
+                  <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
           <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -90,11 +120,9 @@
 <!-- DataTables -->
 <script src="/static/admstatic/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/static/admstatic/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/static/admstatic/bower_components/datatables.net/js/dataTables.select.js"></script>
+<script src="/static/admstatic/bower_components/datatables.net/js/dataTables.select.min.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-  })
-</script>
+<script src="/static/admstatic/admbiobses/js/penerbit.js"></script>
 </body>
 </html>
