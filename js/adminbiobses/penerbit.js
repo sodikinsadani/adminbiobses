@@ -1,6 +1,13 @@
 function showForm (actionselect, data) {
-  if (actionselect != 0) {
-    console.log(data[1]);
+  //reset form
+  $('form')[0].reset();
+
+  if (actionselect == 0) {
+    $('#modal-default').find('.modal-title').text('Tambah Penerbit')
+    $("form :input").prop("disabled", false);
+    $('#btnsave').text('Save').show()
+    $('#btnsave').val('new')
+    $("form").attr('action', '/adminbiobses/penerbit/');
   }
   $('#modal-default').modal('toggle');
 }
