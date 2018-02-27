@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -35,3 +35,44 @@ class penerbit(View):
         else :
             messages.add_message(request, messages.warning, '''Gagal menambah data penerbit. Data tidak valid''')
         return render(request, self.template_name, {'form': form})
+
+@method_decorator(login_required, name='dispatch')
+class penerbitEdit(View):
+    def get_penerbit(self, pk):
+        penerbit = get_object_or_404(Penerbit, pk=pk)
+        return penerbit
+
+    def post(self, request, pk):
+        penerbit = self.get_penerbit(pk)
+        nama_penerbit = penerbit.nama_penerbit
+
+        form = fPenerbit(request.POST, instance=penerbit)
+        if form.is_valid():
+            penerbit = form.save()
+            messages.add_message(request, messages.SUCCESS, '''
+            Berhasil mengubah data {0} ke data penerbit
+            '''.format(nama_penerbit,))
+        else :
+            messages.add_message(request, messages.SUCCESS, '''Gagal mengubah data penerbit ''')
+
+        return redirect('adminbiobses:penerbit')
+
+@method_decorator(login_required, name='dispatch')
+class penerbitDelete(View):
+    def get_penerbit(self, pk):
+        penerbit = get_object_or_404(Penerbit, pk=pk)
+        return penerbit
+
+    def post(self, request, pk):
+        penerbit = self.get_penerbit(pk)
+        nama_penerbit = penerbit.nama_penerbit
+
+        try :
+            penerbit = penerbit.delete()
+            messages.add_message(request, messages.SUCCESS, '''
+            Berhasil menghapus {0} dari data penerbit
+            '''.format(nama_penerbit,))
+        except :
+            messages.add_message(request, messages.SUCCESS, '''Gagal menghapus data penerbit ''')
+
+        return redirect('adminbiobses:penerbit')

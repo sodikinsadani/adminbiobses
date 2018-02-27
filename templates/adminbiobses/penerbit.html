@@ -50,6 +50,8 @@
                 <li><a href="#">New</a></li>
                 <li><a href="#">Edit</a></li>
                 <li><a href="#">Delete</a></li>
+                <li class="divider"></li>
+                <li><a href="#">View</a></li>
               </ul>
             </div>
           </div>
@@ -64,6 +66,8 @@
                   <form role="form" method="post" role="form">
                     {% csrf_token %}
                     <div class="box-header with-border">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true"><i class="fa fa-close (alias)"></i></span></button>
                       <h3 class="modal-title">Penerbit</h3>
                     </div>
                     <!-- /.box-header -->
@@ -85,7 +89,7 @@
 
                     <div class="box-footer">
                       <div class="pull-right">
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <button type="reset" id="btnreset" class="btn btn-danger">Reset</button>
                         <button type="submit" id="btnsave" class="btn btn-info">Save</button>
                       </div>
                     </div>
@@ -112,6 +116,7 @@
             <thead>
             <tr>
               <th>No</th>
+              <th>ID</th>
               <th>Nama Penerbit</th>
               <th>Alamat</th>
               <th>Profile</th>
@@ -121,6 +126,7 @@
             {% for p in penerbit %}
             <tr>
               <td>{{forloop.counter}}</td>
+              <td>{{p.id}}</td>
               <td>{{p.nama_penerbit|title}}</td>
               <td>{{p.alamat|title}}</td>
               <td>{{p.profile}}</td>
