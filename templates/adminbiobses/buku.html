@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "adminbiobses/layout/head.html" %}
+  <!-- datatables -->
+  <link rel="stylesheet" href="/static/admstatic/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="/static/admstatic/bower_components/datatables.net-bs/css/select.bootstrap4.min.css">
+  <title>Buku</title>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  {% include "adminbiobses/layout/main-header.html" %}
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  {% include "adminbiobses/layout/main-sidebar.html" %}
+
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Buku
+        <small>informasi data buku</small>
+      </h1>
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title"></h3>
+
+          <div class="box-tools pull-right">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">Action</button>
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu" id="actionmenu">
+                <li><a href="#">New</a></li>
+                <li><a href="#">Edit</a></li>
+                <li><a href="#">Delete</a></li>
+                <li class="divider"></li>
+                <li><a href="#">View</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="box-body">
+          <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                  <!-- form start -->
+                  <form role="form" method="post" role="form">
+                    {% csrf_token %}
+                    <div class="box-header with-border">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true"><i class="fa fa-close (alias)"></i></span></button>
+                      <h3 class="modal-title">Buku</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label for="{{ form.nama_buku.id_for_label }}">Nama Buku</label>
+                        {{ form.nama_buku }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.pengarang.id_for_label }}">Pengarang</label>
+                        {{ form.pengarang }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.penerbit.id_for_label }}">Penerbit</label>
+                        {{ form.penerbit }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.subkategori.id_for_label }}">Sub Kategori</label>
+                        {{ form.subkategori }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.harga.id_for_label }}">Harga</label>
+                        {{ form.harga }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.berat.id_for_label }}">Berat</label>
+                        {{ form.berat }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.diskon.id_for_label }}">Diskon</label>
+                        {{ form.diskon }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.image1.id_for_label }}">Gambar 1</label>
+                        {{ form.image1 }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.image2.id_for_label }}">Gambar 2</label>
+                        {{ form.image2 }}
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.image3.id_for_label }}">Gambar 3</label>
+                        {{ form.image3 }}
+                      </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                      <div class="pull-right">
+                        <button type="reset" id="btnreset" class="btn btn-danger">Reset</button>
+                        <button type="submit" id="btnsave" class="btn btn-info">Save</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.box -->
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+          {% if messages %}
+          <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>No</th>
+              <th>ID</th>
+              <th>Nama Buku</th>
+              <th>Pengarang</th>
+              <th>Penerbit</th>
+              <th>Sub Kategori</th>
+              <th>Harga (Rp)</th>
+              <th>Berat (gr)</th>
+              <th>Diskon (%)</th>
+              <th>Image 1</th>
+              <th>Image 2</th>
+              <th>Image 3</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for b in buku %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{b.id}}</td>
+              <td>{{b.nama_buku|title}}</td>
+              <td>{{b.pengarang|upper}}</td>
+              <td>{{b.penerbit|title}}</td>
+              <td>{{b.subkategori|title}}</td>
+              <td>{{b.harga}}</td>
+              <td>{{b.berat}}</td>
+              <td>{{b.diskon}}</td>
+              <td>{{b.image1}}</td>
+              <td>{{b.image2}}</td>
+              <td>{{b.image3}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  {% include "adminbiobses/layout/main-footer.html" %}
+
+  <!-- Control Sidebar -->
+  {% include "adminbiobses/layout/control-sidebar.html" %}
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+{% include "adminbiobses/layout/js.html" %}
+<!-- DataTables -->
+<script src="/static/admstatic/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/admstatic/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/static/admstatic/bower_components/datatables.net/js/dataTables.select.js"></script>
+<script src="/static/admstatic/bower_components/datatables.net/js/dataTables.select.min.js"></script>
+<!-- page script -->
+<script src="/static/adminbiobses/buku.js"></script>
+</body>
+</html>

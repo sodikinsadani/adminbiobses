@@ -36,13 +36,17 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>Penerbit</span>
+            <span>Master</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="{% url 'adminbiobses:buku' %}"><i class="fa fa-circle-o"></i> Data Buku</a></li>
             <li><a href="{% url 'adminbiobses:penerbit' %}"><i class="fa fa-circle-o"></i> Data Penerbit</a></li>
+            <li><a href="{% url 'adminbiobses:kategori' %}"><i class="fa fa-circle-o"></i> Data Kategori</a></li>
+            <li><a href="{% url 'adminbiobses:subkategori' %}"><i class="fa fa-circle-o"></i> Data Sub Kategori</a></li>
+            <li><a href="{% url 'adminbiobses:pengarang' %}"><i class="fa fa-circle-o"></i> Data Pengarang</a></li>
           </ul>
         </li>
       </ul>
