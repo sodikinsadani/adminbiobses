@@ -11,9 +11,9 @@ class Buku(models.Model):
     harga = models.IntegerField()
     berat = models.FloatField(blank=True,null=True)
     diskon = models.FloatField(blank=True,null=True)
-    image1 = models.ImageField(blank=True,null=True)
-    image2 = models.ImageField(blank=True,null=True)
-    image3 = models.ImageField(blank=True,null=True)
+    image1 = models.FileField(upload_to='master buku/',blank=True,null=True)
+    image2 = models.FileField(upload_to='master buku/',blank=True,null=True)
+    image3 = models.FileField(upload_to='master buku/',blank=True,null=True)
 
     class Meta:
         ordering = ["subkategori","penerbit","pengarang","nama_buku"]

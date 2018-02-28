@@ -24,8 +24,8 @@ class buku(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-
+        form = fBuku(request.POST, request.FILES)
+        
         if form.is_valid():
             buku = form.save()
             messages.add_message(request, messages.SUCCESS, '''
@@ -33,7 +33,7 @@ class buku(View):
             '''.format(buku.nama_buku,))
             return HttpResponseRedirect(reverse('adminbiobses:buku'))
         else :
-            messages.add_message(request, messages.warning, '''Gagal menambah data buku. Data tidak valid''')
+            messages.add_message(request, messages.SUCCESS, '''Gagal menambah data buku. Data tidak valid''')
         return render(request, self.template_name, {'form': form})
 
 @method_decorator(login_required, name='dispatch')

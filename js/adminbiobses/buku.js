@@ -1,6 +1,6 @@
 function setForm(data){
   $("#id_nama_buku").val(data[2])
-  $("#id_pengarang").val(data[3])
+  /*$("#id_pengarang").val(data[3])
   $("#id_penerbit").val(data[4])
   $("#id_subkategori").val(data[5])
   $("#id_harga").val(data[6])
@@ -8,7 +8,7 @@ function setForm(data){
   $("#id_diskon").val(data[8])
   $("#id_image1").val(data[9])
   $("#id_image2").val(data[10])
-  $("#id_image3").val(data[11])
+  $("#id_image3").val(data[11])*/
 }
 
 function showForm (actionselect, data) {
