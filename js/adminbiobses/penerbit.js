@@ -49,6 +49,7 @@ $(function(){
     "visible":false}
   ],
   select: true,
+  //"scrollX": true,
   });
 
   $('#example1 tbody').on( 'click', 'tr', function () {

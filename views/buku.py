@@ -25,7 +25,7 @@ class buku(View):
 
     def post(self, request, *args, **kwargs):
         form = fBuku(request.POST, request.FILES)
-        
+
         if form.is_valid():
             buku = form.save()
             messages.add_message(request, messages.SUCCESS, '''
@@ -45,8 +45,7 @@ class bukuEdit(View):
     def post(self, request, pk):
         buku = self.get_buku(pk)
         nama_buku = buku.nama_buku
-
-        form = fBuku(request.POST, instance=buku)
+        form = fBuku(request.POST, request.FILES, instance=buku)
         if form.is_valid():
             buku = form.save()
             messages.add_message(request, messages.SUCCESS, '''
