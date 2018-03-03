@@ -89,11 +89,34 @@
                         {{ form.subkategori }}
                       </div>
                       <div class="form-group">
+                        <label for="{{ form.kategori.id_for_label }}">Status Buku</label>
+                        {{ form.kategori }}
+                      </div>
+                      <div class="form-group">
                         <label for="{{ form.harga.id_for_label }}">Harga</label>
                         <div class="input-group">
                           <span class="input-group-addon">Rp.</span>
                           {{ form.harga }}
                           <span class="input-group-addon">.00</span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.tahun_terbit.id_for_label }}">Tahun Terbit</label>
+                        <div class="input-group date">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+                          {{ form.tahun_terbit }}
+                        </div>
+                        <!-- /.input group -->
+                      </div>
+                      <!-- /.form group -->
+                      <div class="form-group">
+                        <label for="{{ form.tebal_buku.id_for_label }}">Tebal Buku</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-arrows-v"></i></span>
+                          {{ form.tebal_buku }}
+                          <span class="input-group-addon">cm</span>
                         </div>
                       </div>
                       <div class="form-group">
@@ -105,12 +128,20 @@
                         </div>
                       </div>
                       <div class="form-group">
+                        <label for="{{ form.stok.id_for_label }}">Stok</label>
+                        {{ form.stok }}
+                      </div>
+                      <div class="form-group">
                         <label for="{{ form.diskon.id_for_label }}">Diskon</label>
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-shopping-cart"></i></span>
+                          <span class="input-group-addon"><i class="fa fa-scissors"></i></span>
                           {{ form.diskon }}
                           <span class="input-group-addon">%</span>
                         </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="{{ form.isi_berita.id_for_label }}">Isi Berita</label>
+                        {{ form.isi_berita }}
                       </div>
                       <div class="form-group">
                           <label for="{{ form.image1.id_for_label }}">Gambar 1</label>
@@ -191,9 +222,14 @@
               <th>Pengarang</th>
               <th>Penerbit</th>
               <th>Sub Kategori</th>
+              <th>Status Buku</th>
               <th>Harga (Rp)</th>
+              <th>Tahun Terbit</th>
+              <th>Tebal Buku (%)</th>
               <th>Berat (gr)</th>
+              <th>Stok</th>
               <th>Diskon (%)</th>
+              <th>Isi Berita (%)</th>
               <th>Image 1</th>
               <th>Image 2</th>
               <th>Image 3</th>
@@ -208,9 +244,14 @@
               <td>{{b.pengarang|upper}}</td>
               <td>{{b.penerbit|title}}</td>
               <td>{{b.subkategori|title}}</td>
+              <td>{{b.kategori|title}}</td>
               <td>{{b.harga}}</td>
+              <td>{{b.tahun_terbit}}</td>
+              <td>{{b.tebal_buku}}</td>
               <td>{{b.berat}}</td>
+              <td>{{b.stok}}</td>
               <td>{{b.diskon}}</td>
+              <td>{{b.isi_berita}}</td>
               <td>{{b.image1}}</td>
               <td>{{b.image2}}</td>
               <td>{{b.image3}}</td>

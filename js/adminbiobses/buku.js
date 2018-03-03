@@ -16,12 +16,19 @@ function setForm(data){
   $("#id_subkategori option").filter(function() {
     return $(this).text().toUpperCase() == data[5].toUpperCase();
   }).prop('selected', true);
-  $("#id_harga").val(data[6])
-  $("#id_berat").val(data[7])
-  $("#id_diskon").val(data[8])
-  showImageField($('#id_image1'), $("#img-upload1"), data[9])
-  showImageField($('#id_image2'), $("#img-upload2"), data[10])
-  showImageField($('#id_image3'), $("#img-upload3"), data[11])
+  $("#id_kategori option").filter(function() {
+    return $(this).text().toUpperCase() == data[6].toUpperCase();
+  }).prop('selected', true);
+  $("#id_harga").val(data[7])
+  $("#id_tahun_terbit").val(data[8])
+  $("#id_tebal_buku").val(data[9])
+  $("#id_berat").val(data[10])
+  $("#id_stok").val(data[11])
+  $("#id_diskon").val(data[12])
+  $("#id_isi_berita").val(data[13])
+  showImageField($('#id_image1'), $("#img-upload1"), data[14])
+  showImageField($('#id_image2'), $("#img-upload2"), data[15])
+  showImageField($('#id_image3'), $("#img-upload3"), data[16])
 }
 
 function showForm (actionselect, data) {
@@ -112,6 +119,11 @@ $(function(){
 	$("#id_image3").change(function(){
 	    readURL(this, $('#img-upload3'));
 	});
+
+  //Date picker
+  $('#id_tahun_terbit').datepicker({
+    autoclose: true
+  })
 
   $('#example1 tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
