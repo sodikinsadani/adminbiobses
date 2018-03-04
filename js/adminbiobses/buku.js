@@ -20,15 +20,16 @@ function setForm(data){
     return $(this).text().toUpperCase() == data[6].toUpperCase();
   }).prop('selected', true);
   $("#id_harga").val(data[7])
-  $("#id_tahun_terbit").val(data[8])
-  $("#id_tebal_buku").val(data[9])
-  $("#id_berat").val(data[10])
-  $("#id_stok").val(data[11])
-  $("#id_diskon").val(data[12])
-  $("#id_isi_berita").val(data[13])
-  showImageField($('#id_image1'), $("#img-upload1"), data[14])
-  showImageField($('#id_image2'), $("#img-upload2"), data[15])
-  showImageField($('#id_image3'), $("#img-upload3"), data[16])
+  $("#id_diskon").val(data[8])
+  $("#id_harga_diskon").val(data[9])
+  $("#id_tahun_terbit").val(data[10])
+  $("#id_tebal_buku").val(data[11])
+  $("#id_berat").val(data[12])
+  $("#id_stok").val(data[13])
+  $("#id_isi_berita").val(data[14])
+  showImageField($('#id_image1'), $("#img-upload1"), data[15])
+  showImageField($('#id_image2'), $("#img-upload2"), data[16])
+  showImageField($('#id_image3'), $("#img-upload3"), data[17])
 }
 
 function showForm (actionselect, data) {
@@ -84,7 +85,7 @@ function readURL(input, imgUpload) {
 $(function(){
   var table = $('#example1').DataTable({
     "columnDefs":[
-      {"targets":[1],
+      {"targets":[1,14],
     "visible":false}
   ],
   select: true,
@@ -120,10 +121,23 @@ $(function(){
 	    readURL(this, $('#img-upload3'));
 	});
 
-  //Date picker
-  $('#id_tahun_terbit').datepicker({
-    autoclose: true
-  })
+  $("#id_diskon").change(function(){
+      var harga = $("#id_harga").val()
+      var diskon = $("#id_diskon").val()
+	    $("#id_harga_diskon").val(harga - (harga * (diskon/100)))
+	});
+
+  $("#id_harga").change(function(){
+      var harga = $("#id_harga").val()
+      var diskon = $("#id_diskon").val()
+	    $("#id_harga_diskon").val(harga - (harga * (diskon/100)))
+	});
+
+  $("#id_harga_diskon").change(function(){
+      var harga = $("#id_harga").val()
+      var harga_diskon = $("#id_harga_diskon").val()
+      $("#id_diskon").val(((harga-harga_diskon) / harga) * 100)
+	});
 
   $('#example1 tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
