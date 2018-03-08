@@ -7,10 +7,10 @@ from django.utils import timezone
 
 class Buku(models.Model):
     nama_buku = models.CharField(max_length=100)
-    pengarang = models.ForeignKey(Pengarang, on_delete=models.CASCADE,)
-    penerbit = models.ForeignKey(Penerbit, on_delete=models.CASCADE,)
-    subkategori = models.ForeignKey(SubKategori, on_delete=models.CASCADE,)
-    kategori = models.ForeignKey(Kategori, on_delete=models.CASCADE,)
+    pengarang = models.ForeignKey(Pengarang, on_delete=models.SET_NULL, null=True)
+    penerbit = models.ForeignKey(Penerbit, on_delete=models.SET_NULL, null=True)
+    subkategori = models.ForeignKey(SubKategori, on_delete=models.SET_NULL, null=True)
+    kategori = models.ForeignKey(Kategori, on_delete=models.SET_NULL, null=True)
     harga = models.IntegerField()
     harga_diskon = models.IntegerField()
     tahun_terbit = models.IntegerField()

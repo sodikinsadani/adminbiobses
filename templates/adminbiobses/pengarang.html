@@ -66,8 +66,6 @@
                   <form role="form" method="post" role="form">
                     {% csrf_token %}
                     <div class="box-header with-border">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true"><i class="fa fa-close (alias)"></i></span></button>
                       <h3 class="modal-title">Pengarang</h3>
                     </div>
                     <!-- /.box-header -->
@@ -87,6 +85,7 @@
                       <div class="pull-right">
                         <button type="reset" id="btnreset" class="btn btn-danger">Reset</button>
                         <button type="submit" id="btnsave" class="btn btn-info">Save</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                       </div>
                     </div>
                   </form>
